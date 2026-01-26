@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050816;
+  --foreground: #f3f3f3;
+
+  /* Senior-Grade Color System (Tinted Neutrals) */
+  --primary: #050816;
+  --secondary: #9199af;
+  /* Tinted Navy Gray - Better legibility */
+  --tertiary: #151030;
+
+  --text-primary: #ffffff;
+  --text-secondary: #b6bbd4;
+  /* High-contrast secondary */
+  --text-muted: #8088a3;
+
+  --accent: #3b82f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+
+  /* Semantic Typography Colors */
+  --color-txt-main: var(--text-primary);
+  --color-txt-sub: var(--text-secondary);
+  --color-txt-muted: var(--text-muted);
+
+  --font-sans: var(--font-poppins);
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans), sans-serif;
+  line-height: 1.6;
+  /* Production standard for dark mode readability */
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Global Heading Refinements */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-weight: 700;
+}
