@@ -51,7 +51,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             >
                 <h2 className="text-4xl md:text-6xl font-semibold max-w-2xl leading-tight">
                     Expert in UI Engineering<br />
-                    <span className="text-gray-400">& Design-Driven Development.</span>
+                    <span className="text-gray-400">&amp; Design-Driven Development.</span>
                 </h2>
             </motion.div>
 
