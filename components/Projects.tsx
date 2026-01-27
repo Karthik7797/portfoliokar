@@ -168,36 +168,47 @@ const ProjectCard = ({
     source_code_link,
 }: any) => {
     return (
-        <motion.div variants={fadeIn("up", "spring", index * 0.2, 0.75)}>
+        <motion.div
+            variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+            className="w-full"
+        >
             <Tilt
-                options={{ max: 25, scale: 1, speed: 450 }}
-                className='bg-tertiary p-6 rounded-3xl sm:w-[380px] w-full border border-white/5 hover:border-white/10 transition-all group'
+                options={{ max: 15, scale: 1.02, speed: 450 }}
+                className='bg-tertiary/40 backdrop-blur-sm p-5 rounded-3xl w-full border border-white/5 hover:border-white/20 transition-all group h-full flex flex-col'
             >
-                <div className='relative w-full h-[220px]'>
+                <div className='relative w-full h-[230px] overflow-hidden rounded-2xl'>
                     <img
                         src={image}
                         alt={name}
-                        className='w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500'
+                        className='w-full h-full object-cover grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out transform group-hover:scale-110'
                     />
-                    <div className='absolute inset-0 flex justify-end m-3'>
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-tertiary/80 via-transparent to-transparent opacity-60" />
+
+                    <div className='absolute top-3 right-3 flex justify-end'>
                         <div
                             onClick={() => source_code_link && window.open(source_code_link, "_blank")}
-                            className='bg-primary/80 backdrop-blur-md w-12 h-12 rounded-full flex justify-center items-center cursor-pointer border border-white/10 hover:border-blue-500/50 transition-all'
+                            className='bg-black/50 backdrop-blur-xl w-10 h-10 rounded-full flex justify-center items-center cursor-pointer border border-white/20 hover:border-blue-500/50 hover:bg-blue-500/20 transition-all duration-300 group/link'
                         >
-                            <img src="/assets/linkicon.png" alt='link' className='w-1/2 h-1/2 object-contain' />
+                            <img
+                                src="/assets/linkicon.png"
+                                alt='link'
+                                className='w-5 h-5 object-contain group-hover/link:scale-110 transition-transform'
+                            />
                         </div>
                     </div>
                 </div>
 
-                <div className='mt-6'>
-                    <h3 className='text-txt-main text-2xl font-bold mb-2'>{name}</h3>
-                    <p className='text-txt-sub text-sm leading-relaxed min-h-[60px]'>{description}</p>
+                <div className='mt-5 flex-1 flex flex-col'>
+                    <h3 className='text-txt-main text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors'>{name}</h3>
+                    <p className='text-txt-sub text-[15px] leading-relaxed mb-4 line-clamp-3'>{description}</p>
                 </div>
 
-                <div className='mt-5 flex flex-wrap gap-3'>
+                <div className='mt-auto pt-4 flex flex-wrap gap-2 border-t border-white/5'>
                     {tags.map((tag: any) => (
-                        <span key={tag.name} className={`text-xs font-medium px-2 py-1 bg-white/5 rounded-md ${tag.color}`}>
-                            #{tag.name}
+                        <span key={tag.name} className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-1 bg-white/5 rounded-full border border-white/5 ${tag.color}`}>
+                            {tag.name}
                         </span>
                     ))}
                 </div>
@@ -214,35 +225,38 @@ const MobileProjectCard = ({
     image,
 }: any) => {
     return (
-        <motion.div variants={fadeIn("up", "spring", index * 0.2, 0.75)}>
+        <motion.div
+            variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+            className="w-full"
+        >
             <Tilt
-                options={{ max: 25, scale: 1, speed: 450 }}
-                className='bg-tertiary p-6 rounded-3xl sm:w-[380px] w-full border border-white/5 hover:border-white/10 transition-all group relative'
+                options={{ max: 15, scale: 1.02, speed: 450 }}
+                className='bg-tertiary/40 backdrop-blur-sm p-5 rounded-3xl w-full border border-white/5 hover:border-white/20 transition-all group h-full flex flex-col'
             >
-                <div className='relative w-full h-[220px]'>
+                <div className='relative w-full h-[230px] overflow-hidden rounded-2xl'>
                     <img
                         src={image}
                         alt={name}
-                        className='w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500'
+                        className='w-full h-full object-cover grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out transform group-hover:scale-110'
                     />
 
-                    <div className='absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 rounded-2xl backdrop-blur-sm'>
-                        <div className='bg-white p-2 rounded-lg transform scale-90 group-hover:scale-100 transition-transform duration-300'>
-                            <img src="/assets/qr_code.png" alt='qrcode' className='w-28 h-28 object-contain' />
-                            <p className="text-black text-[10px] text-center mt-1 font-bold italic tracking-tighter">Scan to Install</p>
+                    <div className='absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-all duration-500 bg-black/80 backdrop-blur-md'>
+                        <div className='bg-white p-3 rounded-2xl transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-2xl shadow-white/10'>
+                            <img src="/assets/qr_code.png" alt='qrcode' className='w-24 h-24 object-contain' />
+                            <p className="text-black text-[10px] text-center mt-2 font-bold uppercase tracking-tight">Scan to Install</p>
                         </div>
                     </div>
                 </div>
 
-                <div className='mt-6'>
-                    <h3 className='text-txt-main text-2xl font-bold mb-2'>{name}</h3>
-                    <p className='text-txt-sub text-sm leading-relaxed min-h-[60px]'>{description}</p>
+                <div className='mt-5 flex-1 flex flex-col'>
+                    <h3 className='text-txt-main text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors'>{name}</h3>
+                    <p className='text-txt-sub text-[15px] leading-relaxed mb-4 line-clamp-3'>{description}</p>
                 </div>
 
-                <div className='mt-5 flex flex-wrap gap-3'>
+                <div className='mt-auto pt-4 flex flex-wrap gap-2 border-t border-white/5'>
                     {tags.map((tag: any) => (
-                        <span key={tag.name} className={`text-xs font-medium px-2 py-1 bg-white/5 rounded-md ${tag.color}`}>
-                            #{tag.name}
+                        <span key={tag.name} className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-1 bg-white/5 rounded-full border border-white/5 ${tag.color}`}>
+                            {tag.name}
                         </span>
                     ))}
                 </div>
@@ -253,49 +267,49 @@ const MobileProjectCard = ({
 
 const Projects = () => {
     return (
-        <div id="projects">
+        <div className="py-12 md:py-20 lg:py-24">
             <motion.div variants={textVariant(0)}>
-                <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-[0.2em] mb-2">
+                <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-2">
                     Professional Case Studies
                 </p>
-                <h2 className="text-txt-main text-4xl md:text-6xl font-bold mb-10">
-                    Selected Work.
+                <h2 className="text-txt-main text-5xl md:text-7xl font-extrabold mb-12">
+                    Selected Work<span className="text-blue-500">.</span>
                 </h2>
             </motion.div>
 
-            <div className='flex flex-wrap gap-8 justify-center'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch'>
                 {projects.map((project, index) => (
                     <ProjectCard key={`project-${index}`} index={index} {...project} />
                 ))}
             </div>
 
-            <motion.div variants={textVariant(0)} className="mt-24">
-                <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-[0.2em] mb-2">
-                    R&D and Side Projects
+            <motion.div variants={textVariant(0)} className="mt-32">
+                <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-2">
+                    Labs & Side Projects
                 </p>
-                <h2 className="text-txt-main text-4xl md:text-6xl font-bold mb-10">
-                    Personal Builds.
+                <h2 className="text-txt-main text-5xl md:text-7xl font-extrabold mb-12">
+                    Open Source<span className="text-purple-500">.</span>
                 </h2>
             </motion.div>
 
-            <div className='flex flex-wrap gap-8 justify-center mb-24'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch mb-32'>
                 {ownprojects.map((project, index) => (
-                    <ProjectCard key={`own-${index}`} index={index + 3} {...project} />
+                    <ProjectCard key={`own-${index}`} index={index} {...project} />
                 ))}
             </div>
 
             <motion.div variants={textVariant(0)}>
-                <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-[0.2em] mb-2">
-                    Mobile Ecosystem
+                <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-2">
+                    Mobile Innovation
                 </p>
-                <h2 className="text-txt-main text-4xl md:text-6xl font-bold mb-10">
-                    App Store.
+                <h2 className="text-txt-main text-5xl md:text-7xl font-extrabold mb-12">
+                    App Store<span className="text-pink-500">.</span>
                 </h2>
             </motion.div>
 
-            <div className='flex flex-wrap gap-8 justify-center'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch'>
                 {mobileApps.map((project, index) => (
-                    <MobileProjectCard key={`mobile-${index}`} index={index + 6} {...project} />
+                    <MobileProjectCard key={`mobile-${index}`} index={index} {...project} />
                 ))}
             </div>
         </div>
