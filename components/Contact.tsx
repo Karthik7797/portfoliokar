@@ -52,13 +52,15 @@ const Contact = () => {
                     </div>
 
                     {/* Resume Download Button */}
-                    <button
-                        onClick={() => window.open('/resume.pdf', '_blank')}
+                    <a
+                        href="/Resume_Karthikeyan-prabhu.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className='bg-gradient-to-r from-blue-600 to-indigo-600 py-4 px-8 rounded-xl outline-none w-full text-white font-bold shadow-md shadow-primary hover:shadow-lg hover:shadow-blue-500/20 transition-all active:scale-95 flex items-center justify-center gap-3 mt-4'
                     >
                         <span>📄</span>
                         Download Resume
-                    </button>
+                    </a>
 
                 </div>
             </motion.div>

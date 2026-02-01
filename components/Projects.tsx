@@ -163,7 +163,6 @@ const ProjectCard = ({
     index,
     name,
     description,
-    tags,
     image,
     source_code_link,
 }: any) => {
@@ -204,14 +203,6 @@ const ProjectCard = ({
                     <h3 className='text-txt-main text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors'>{name}</h3>
                     <p className='text-txt-sub text-[15px] leading-relaxed mb-4 line-clamp-3'>{description}</p>
                 </div>
-
-                <div className='mt-auto pt-4 flex flex-wrap gap-2 border-t border-white/5'>
-                    {tags.map((tag: any) => (
-                        <span key={tag.name} className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-1 bg-white/5 rounded-full border border-white/5 ${tag.color}`}>
-                            {tag.name}
-                        </span>
-                    ))}
-                </div>
             </Tilt>
         </motion.div>
     );
@@ -221,7 +212,6 @@ const MobileProjectCard = ({
     index,
     name,
     description,
-    tags,
     image,
 }: any) => {
     return (
@@ -251,14 +241,6 @@ const MobileProjectCard = ({
                 <div className='mt-5 flex-1 flex flex-col'>
                     <h3 className='text-txt-main text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors'>{name}</h3>
                     <p className='text-txt-sub text-[15px] leading-relaxed mb-4 line-clamp-3'>{description}</p>
-                </div>
-
-                <div className='mt-auto pt-4 flex flex-wrap gap-2 border-t border-white/5'>
-                    {tags.map((tag: any) => (
-                        <span key={tag.name} className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-1 bg-white/5 rounded-full border border-white/5 ${tag.color}`}>
-                            {tag.name}
-                        </span>
-                    ))}
                 </div>
             </Tilt>
         </motion.div>
