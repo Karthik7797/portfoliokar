@@ -1,0 +1,91 @@
+# Karthikeyan Prabhu
+
+> Karthikeyan Prabhu is a Senior Front-end Developer at BrainCert with 4+ years of
+> experience in UI engineering and design-driven development, building scalable,
+> high-performance web and mobile applications.
+
+## Profile
+
+- Name: Karthikeyan Prabhu
+- Title: Senior Front-end Developer / Front-end Engineer
+- Current employer: BrainCert (since November 2024)
+- Location: India
+- Email: karthikeyanprabhu8@gmail.com
+- Phone: +91 63802 17451
+- LinkedIn: https://linkedin.com/in/karthikeyan-prabhu
+- Portfolio: https://portfoliokar-psi.vercel.app
+- Resume: https://portfoliokar-psi.vercel.app/Resume_Karthikeyan-prabhu.pdf
+- Availability: open to freelance projects and full-time opportunities
+
+## Skills
+
+React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, Redux, Zustand, Node.js,
+MongoDB, Figma, Git, React Native, Angular, Three.js, Docker.
+
+Other areas of expertise: UI engineering, design systems, component library
+architecture, responsive design, cross-browser compatibility, rendering performance
+optimisation, state management, RESTful API integration, frontend-to-backend data flow.
+
+## Work Experience
+
+### Senior Front-end Developer — BrainCert (Nov 2024 – Present)
+- Architected and developed high-performance web and mobile interfaces using the React stack.
+- Engineered scalable component libraries and integrated complex RESTful architectures.
+- Optimized rendering pipelines and state management strategies for enterprise-grade applications.
+
+### UI Developer — Elroi Software Solutions (Nov 2022 – Oct 2024)
+- Engineered interactive dashboards and enterprise CRM modules with React.js.
+- Established and maintained rigorous design systems across multiple product lines.
+- Managed frontend-to-backend data flows utilizing Redux and Zustand architectures.
+
+### UI Developer — KitKat Software Solutions (Aug 2021 – Sep 2022)
+- Transformed high-fidelity Figma prototypes into pixel-perfect technical implementations.
+- Ensured cross-browser performance and localized UI consistency for global web applications.
+
+## Professional Projects
+
+- Dhaksha Travels (https://maduraidhakshatoursandtravels.com/) — car rental search and
+  booking platform. React, MongoDB, Tailwind CSS.
+- AI Acme (https://www.aiacme.ai/) — job search app with salary estimation and
+  location-based tracking. React, REST API, SCSS.
+- Brugu IO (https://brugu.io/) — travel booking and destinations platform.
+  Next.js, Supabase, CSS.
+- Roboto 360 (https://www.roboto360.com/) — enterprise car rental and management
+  dashboard. React, MongoDB, Tailwind CSS.
+- Yashini Homestays (https://yashinihomestays.in/) — homestay booking platform.
+  React, MongoDB, Tailwind CSS.
+- Blue Horse (https://bluehorseindustry.com/) — industrial solutions web platform.
+  React, MongoDB, Tailwind CSS.
+- AI Being (https://ai-being.com/home/) — AI-based search and management platform.
+  React, MongoDB, Tailwind CSS.
+- Crypco Brugu (https://crypco.brugu.io) — cryptocurrency management and search platform.
+  React, MongoDB, Tailwind CSS.
+- Yaal Homestay (https://yaalhomestay.in/) — hospitality booking platform.
+  React, MongoDB, Tailwind CSS.
+
+## Side Projects
+
+- Normie Agency (https://agency-orpin-three.vercel.app/) — agency management platform.
+- Normie AI (https://normieai.vercel.app/) — AI-integrated utility suite.
+- Crygo App (https://crygo-kk49.vercel.app/) — crypto tracking app with real-time charts.
+
+## Education
+
+- De Montfort University, Singapore — Bachelor of Engineering (B.E), Mechatronics
+  Engineering (2015–2019)
+- Auston Institute of Technology, Singapore — Diploma, Electronics Engineering (2016–2017)
+- Cornerstone International College, Chennai, India — Diploma, Automobile Engineering
+  (2015–2016)
+
+## Certifications and Achievements
+
+- IBM Full Stack Development Certification — MERN stack: React.js, Node.js, Express.js,
+  MongoDB, Tailwind CSS.
+- freeCodeCamp Responsive Web Design Certification — HTML, CSS, Bootstrap, responsive layout.
+- HackerRank JavaScript Certification — core JavaScript, problem solving, fundamentals.
+- Best Performer Award, Elroi Software Solutions — for contribution to CRM module development.
+
+## Pages
+
+- https://portfoliokar-psi.vercel.app/ — main portfolio
+- https://portfoliokar-psi.vercel.app/about — full text profile
