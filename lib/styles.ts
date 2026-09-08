@@ -1,17 +1,17 @@
 const styles = {
-    paddingX: "sm:px-16 px-6",
-    paddingY: "sm:py-16 py-6",
-    padding: "sm:px-16 px-6 sm:py-16 py-10",
+    paddingX: "px-6 sm:px-10 lg:px-16",
+    paddingY: "pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-40 lg:pb-44",
+    padding: "px-6 sm:px-10 lg:px-16 pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-40 lg:pb-44",
 
+    /* Display scale — fluid, tight, one system for the whole site */
     heroHeadText:
-        "font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2",
+        "font-semibold text-txt-main text-[clamp(3rem,10vw,7.5rem)] leading-[0.92] tracking-[-0.04em]",
     heroSubText:
-        "text-[#dfd9ff] font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px]",
+        "display-italic text-accent text-[clamp(1.5rem,3vw,2.5rem)] leading-tight",
 
     sectionHeadText:
-        "text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]",
-    sectionSubText:
-        "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
+        "font-semibold text-txt-main text-[clamp(2.5rem,6vw,5rem)] leading-[1] tracking-[-0.03em]",
+    sectionSubText: "eyebrow",
 };
 
 export { styles };

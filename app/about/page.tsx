@@ -103,10 +103,10 @@ const sideProjects = [
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16 text-[#e8e8f0] bg-[#050816] min-h-screen">
+    <main className="mx-auto max-w-3xl px-6 py-16 text-txt-main bg-background min-h-screen">
       <article>
         <h1 className="text-4xl font-bold mb-2">Karthikeyan Prabhu</h1>
-        <p className="text-lg text-[#aaa6c3] mb-8">
+        <p className="text-lg text-txt-sub mb-8">
           Senior Front-end Developer / Front-end Engineer
         </p>
 
@@ -147,7 +147,7 @@ export default function AboutPage() {
               <h3 className="text-xl font-semibold">
                 {job.title} — {job.company}
               </h3>
-              <p className="text-[#aaa6c3] text-sm mb-2">{job.date}</p>
+              <p className="text-txt-sub text-sm mb-2">{job.date}</p>
               <ul className="list-disc ml-6 space-y-1">
                 {job.points.map((p) => (
                   <li key={p}>{p}</li>

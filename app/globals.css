@@ -1,82 +1,219 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens
+   One cool-navy neutral family, one warm accent pulled from the
+   hero footage's rim light. Nothing else gets a colour.
+------------------------------------------------------------------- */
 :root {
-  --background: #050816;
-  --foreground: #f3f3f3;
+  --background: #070912;
+  --surface: #0c0f1c;
+  --surface-2: #12162a;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
 
-  /* Senior-Grade Color System (Tinted Neutrals) */
-  --primary: #050816;
-  --secondary: #9199af;
-  /* Tinted Navy Gray - Better legibility */
-  --tertiary: #151030;
+  --text-primary: #f2f3f8;
+  --text-secondary: #a5abc4;
+  --text-muted: #6b7290;
 
-  --text-primary: #ffffff;
-  --text-secondary: #b6bbd4;
-  /* High-contrast secondary */
-  --text-muted: #8088a3;
+  --accent: #e3a15a;
+  --accent-2: #f2c58f;
+  --accent-ink: #1a1206;
 
-  --accent: #3b82f6;
+  /* z-index scale */
+  --z-nav: 50;
+  --z-grain: 90;
+  --z-loader: 100;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiary);
+  --color-primary: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-tertiary: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
 
-  /* Semantic Typography Colors */
+  --color-secondary: var(--text-secondary);
   --color-txt-main: var(--text-primary);
   --color-txt-sub: var(--text-secondary);
   --color-txt-muted: var(--text-muted);
 
-  --font-sans: var(--font-poppins);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-geist);
+  --font-serif: var(--font-instrument);
+  --font-mono: var(--font-geist-mono);
+
+  --breakpoint-xs: 30rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
   background: var(--background);
   color: var(--text-primary);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
-  /* Production standard for dark mode readability */
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  font-feature-settings: "ss01", "cv11";
 }
 
-/* Global Heading Refinements */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
 h1,
 h2,
 h3 {
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-weight: 600;
+  text-wrap: balance;
 }
 
-/* Anchor offset utility */
-.hash-span {
-  margin-top: -100px;
-  padding-bottom: 100px;
-  display: block;
+p {
+  text-wrap: pretty;
 }
 
-/* Gradient text utilities for high-end look */
-.blue-text-gradient {
-  background: linear-gradient(to top, #2f80ed, #56ccf2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
-.green-text-gradient {
-  background: linear-gradient(to top, #11998e, #38ef7d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-.pink-text-gradient {
-  background: linear-gradient(to top, #ec008c, #fc6767);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Film grain — breaks digital flatness and softens the upscaled hero frames */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+------------------------------------------------------------------- */
+@utility eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@utility display-italic {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@utility hairline {
+  border-top: 1px solid var(--line);
+}
+
+/* Cursor-tracked spotlight for cards. Set --mx / --my from JS. */
+@utility spotlight {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 400ms var(--ease-out-expo);
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(227, 161, 90, 0.14),
+      transparent 45%
+    );
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Skill tile: brand colour only appears on hover, via a CSS var set inline */
+@utility skill-tile {
+  &:hover .skill-icon,
+  &:focus-within .skill-icon {
+    color: var(--brand);
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--brand) 45%, transparent));
+  }
+}
+
+/* Availability dot */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(227, 161, 90, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(227, 161, 90, 0);
+  }
+}
+@utility pulse-dot {
+  animation: pulse-dot 2.2s var(--ease-out-expo) infinite;
+}
+
+/* Scroll cue line */
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+@utility scroll-line {
+  animation: scroll-line 2s var(--ease-out-expo) infinite;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

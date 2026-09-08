@@ -2,55 +2,59 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { styles } from "@/lib/styles";
 import SectionWrapper from "./SectionWrapper";
-import { fadeIn, textVariant } from "@/lib/motion";
+import SectionHeading from "./SectionHeading";
+import { fadeIn } from "@/lib/motion";
 
 const education = [
     {
         school: "De Montfort University, Singapore",
-        degree: "Bachelor of Engineering (B.E) – Mechatronics Engineering",
-        year: "2015 – 2019"
+        degree: "Bachelor of Engineering — Mechatronics Engineering",
+        year: "2015 — 2019",
     },
     {
         school: "Auston Institute of Technology, Singapore",
-        degree: "Diploma – Electronics Engineering",
-        year: "2016 – 2017"
+        degree: "Diploma — Electronics Engineering",
+        year: "2016 — 2017",
     },
     {
         school: "Cornerstone International College, Chennai, India",
-        degree: "Diploma – Automobile Engineering",
-        year: "2015 – 2016"
-    }
+        degree: "Diploma — Automobile Engineering",
+        year: "2015 — 2016",
+    },
 ];
 
 const Education = () => {
     return (
-        <div className="flex flex-col gap-10">
-            <motion.div variants={textVariant(0)}>
-                <p className={`${styles.sectionSubText}`}>What I have studied</p>
-                <h2 className={`${styles.sectionHeadText}`}>Education.</h2>
-            </motion.div>
+        <>
+            <SectionHeading
+                index="06"
+                eyebrow="Education"
+                title={<>Where I <em>studied</em></>}
+            />
 
-            <div className="mt-10 flex flex-col gap-5">
+            <ol className="hairline">
                 {education.map((edu, index) => (
-                    <motion.div
-                        key={index}
-                        variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-                        className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
+                    <motion.li
+                        key={edu.school}
+                        variants={fadeIn("up", index * 0.08, 0.8)}
+                        className="group grid grid-cols-[3rem_1fr] items-baseline gap-x-4 gap-y-2 border-b border-line py-7 transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[4rem_1fr_auto] md:gap-x-8 md:py-8"
                     >
-                        <div className="bg-tertiary rounded-[20px] py-6 px-12 min-h-[150px] flex justify-between items-center sm:flex-row flex-col">
-                            <div className="flex flex-col">
-                                <h3 className="text-white text-[20px] font-bold">{edu.school}</h3>
-                                <p className="text-secondary text-[16px] mt-2 font-semibold">{edu.degree}</p>
-                            </div>
-                            <p className="text-secondary text-[14px] font-semibold mt-4 sm:mt-0 border border-secondary px-3 py-1 rounded-full">{edu.year}</p>
+                        <span className="font-mono text-xs tabular-nums text-accent">
+                            {(index + 1).toString().padStart(2, "0")}
+                        </span>
+                        <div>
+                            <h3 className="text-lg font-semibold tracking-[-0.01em] text-txt-main md:text-xl">{edu.school}</h3>
+                            <p className="mt-1.5 text-[15px] text-txt-sub">{edu.degree}</p>
                         </div>
-                    </motion.div>
+                        <p className="col-start-2 font-mono text-xs tabular-nums text-txt-muted md:col-start-3 md:text-right">
+                            {edu.year}
+                        </p>
+                    </motion.li>
                 ))}
-            </div>
-        </div>
+            </ol>
+        </>
     );
-}
+};
 
 export default SectionWrapper(Education, "education");

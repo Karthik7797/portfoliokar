@@ -2,85 +2,97 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { styles } from "@/lib/styles";
+import { PiArrowUpRight, PiEnvelopeSimple, PiFileArrowDown, PiLinkedinLogo, PiPhone } from "react-icons/pi";
+
 import SectionWrapper from "./SectionWrapper";
-import { slideIn } from "@/lib/motion";
+import { fadeIn, textVariant } from "@/lib/motion";
+import { styles } from "@/lib/styles";
+
+const channels = [
+    {
+        label: "Email",
+        value: "karthikeyanprabhu8@gmail.com",
+        href: "mailto:karthikeyanprabhu8@gmail.com",
+        icon: PiEnvelopeSimple,
+        external: false,
+    },
+    {
+        label: "Phone",
+        value: "+91 63802 17451",
+        href: "tel:+916380217451",
+        icon: PiPhone,
+        external: false,
+    },
+    {
+        label: "LinkedIn",
+        value: "in/karthikeyan-prabhu",
+        href: "https://linkedin.com/in/karthikeyan-prabhu",
+        icon: PiLinkedinLogo,
+        external: true,
+    },
+];
 
 const Contact = () => {
     return (
-        <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
-            <motion.div
-                variants={slideIn("left", "tween", 0.2, 1)}
-                className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
-            >
-                <p className={styles.sectionSubText}>Get in touch</p>
-                <h3 className={styles.sectionHeadText}>Contact Details.</h3>
+        <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
+            {/* Left: the ask */}
+            <motion.div variants={textVariant(0)}>
+                <div className="mb-6 flex items-center gap-4">
+                    <span className="font-mono text-xs text-accent tabular-nums">08</span>
+                    <span aria-hidden className="h-px w-8 bg-line-strong" />
+                    <span className="eyebrow">Get in touch</span>
+                </div>
 
-                <div className='mt-10 flex flex-col gap-6'>
+                <h2 className={`${styles.sectionHeadText} [&_em]:display-italic [&_em]:text-accent [&_em]:font-normal`}>
+                    Let&apos;s build<br />something <em>good</em>.
+                </h2>
 
-                    {/* Email Card */}
-                    <div className='bg-tertiary p-5 rounded-2xl flex items-center gap-5 hover:bg-white/5 transition-colors group cursor-pointer' onClick={() => window.location.href = 'mailto:karthikeyanprabhu8@gmail.com'}>
-                        <div className='w-12 h-12 rounded-full bg-black-200 flex items-center justify-center group-hover:scale-110 transition-transform'>
-                            <span className="text-2xl">📧</span>
-                        </div>
-                        <div>
-                            <p className='text-secondary text-sm font-semibold'>Email</p>
-                            <p className='text-white text-lg font-medium break-all'>karthikeyanprabhu8@gmail.com</p>
-                        </div>
-                    </div>
+                <p className="mt-8 max-w-[46ch] text-base leading-relaxed text-txt-sub md:text-lg">
+                    I take on freelance projects and full-time roles. If you have a product that needs a front-end
+                    that feels considered, I&apos;d like to hear about it.
+                </p>
 
-                    {/* Phone Card */}
-                    <div className='bg-tertiary p-5 rounded-2xl flex items-center gap-5 hover:bg-white/5 transition-colors group cursor-pointer' onClick={() => window.location.href = 'tel:+916380217451'}>
-                        <div className='w-12 h-12 rounded-full bg-black-200 flex items-center justify-center group-hover:scale-110 transition-transform'>
-                            <span className="text-2xl">📱</span>
-                        </div>
-                        <div>
-                            <p className='text-secondary text-sm font-semibold'>Phone</p>
-                            <p className='text-white text-lg font-medium'>+91 63802 17451</p>
-                        </div>
-                    </div>
-
-                    {/* LinkedIn Card */}
-                    <div className='bg-tertiary p-5 rounded-2xl flex items-center gap-5 hover:bg-white/5 transition-colors group cursor-pointer' onClick={() => window.open('https://linkedin.com/in/karthikeyan-prabhu', '_blank')}>
-                        <div className='w-12 h-12 rounded-full bg-black-200 flex items-center justify-center group-hover:scale-110 transition-transform'>
-                            <span className="text-2xl">💼</span>
-                        </div>
-                        <div>
-                            <p className='text-secondary text-sm font-semibold'>LinkedIn</p>
-                            <p className='text-white text-lg font-medium'>karthikeyan-prabhu</p>
-                        </div>
-                    </div>
-
-                    {/* Resume Download Button */}
-                    <a
-                        href="/Resume_Karthikeyan-prabhu.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className='bg-gradient-to-r from-blue-600 to-indigo-600 py-4 px-8 rounded-xl outline-none w-full text-white font-bold shadow-md shadow-primary hover:shadow-lg hover:shadow-blue-500/20 transition-all active:scale-95 flex items-center justify-center gap-3 mt-4'
-                    >
-                        <span>📄</span>
-                        Download Resume
-                    </a>
-
+                <div className="mt-10 flex items-center gap-3">
+                    <span className="pulse-dot h-2 w-2 rounded-full bg-accent" />
+                    <span className="font-mono text-xs uppercase tracking-[0.14em] text-txt-muted">
+                        Available now — India, remote-friendly
+                    </span>
                 </div>
             </motion.div>
 
-            <motion.div
-                variants={slideIn("right", "tween", 0.2, 1)}
-                className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px] bg-tertiary rounded-2xl flex items-center justify-center overflow-hidden relative'
-            >
-                {/* Decorative Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-purple-900/20" />
+            {/* Right: the channels */}
+            <motion.div variants={fadeIn("up", 0.1, 0.9)} className="flex flex-col">
+                <ul className="hairline">
+                    {channels.map((c) => (
+                        <li key={c.label}>
+                            <a
+                                href={c.href}
+                                target={c.external ? "_blank" : undefined}
+                                rel={c.external ? "noopener noreferrer" : undefined}
+                                className="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 border-b border-line py-6 transition-colors duration-500 hover:bg-white/[0.02] md:py-7"
+                            >
+                                <span className="grid h-10 w-10 place-items-center rounded-full border border-line text-txt-sub transition-colors duration-500 group-hover:border-accent group-hover:text-accent">
+                                    <c.icon className="h-[18px] w-[18px]" />
+                                </span>
+                                <span className="min-w-0">
+                                    <span className="eyebrow block">{c.label}</span>
+                                    <span className="mt-1 block truncate text-base font-medium text-txt-main md:text-lg">{c.value}</span>
+                                </span>
+                                <PiArrowUpRight className="h-5 w-5 text-txt-muted transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+                            </a>
+                        </li>
+                    ))}
+                </ul>
 
-                <div className="text-center p-10 relative z-10">
-                    <div className="w-40 h-40 mx-auto bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-[0_0_50px_rgba(59,130,246,0.5)] mb-8">
-                        <span className="text-6xl">🚀</span>
-                    </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">Let&apos;s Work Together!</h3>
-                    <p className="text-secondary max-w-sm mx-auto">
-                        I&apos;m currently available for freelance projects and full-time opportunities.
-                    </p>
-                </div>
+                <a
+                    href="/Resume_Karthikeyan-prabhu.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-8 inline-flex items-center justify-center gap-3 self-start rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-ink shadow-[0_12px_40px_-12px_rgba(227,161,90,0.55)] transition-all duration-500 ease-[var(--ease-out-expo)] hover:bg-accent-2 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-12px_rgba(227,161,90,0.65)] active:translate-y-0 active:scale-[0.98]"
+                >
+                    <PiFileArrowDown className="h-[18px] w-[18px]" />
+                    Download résumé
+                </a>
             </motion.div>
         </div>
     );

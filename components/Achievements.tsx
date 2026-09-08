@@ -2,55 +2,62 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { styles } from "@/lib/styles";
 import SectionWrapper from "./SectionWrapper";
-import { fadeIn, textVariant } from "@/lib/motion";
+import SectionHeading from "./SectionHeading";
+import { fadeIn } from "@/lib/motion";
 
 const achievements = [
     {
-        title: "IBM Full Stack Development Certification",
-        description: "MERN stack covering React.js, Node.js, Express.js, MongoDB, and Tailwind CSS."
+        title: "IBM Full Stack Development",
+        kind: "Certification",
+        description: "MERN stack covering React.js, Node.js, Express.js, MongoDB and Tailwind CSS.",
     },
     {
-        title: "freeCodeCamp Responsive Web Design Certification",
-        description: "HTML, CSS, Bootstrap, and responsive layout principles."
+        title: "freeCodeCamp Responsive Web Design",
+        kind: "Certification",
+        description: "HTML, CSS, Bootstrap and responsive layout principles.",
     },
     {
-        title: "HackerRank JavaScript Certification",
-        description: "Core JavaScript concepts, problem solving, and language fundamentals."
+        title: "HackerRank JavaScript",
+        kind: "Certification",
+        description: "Core JavaScript concepts, problem solving and language fundamentals.",
     },
     {
-        title: "Best Performer Award (Elroi)",
-        description: "Recognized for outstanding contribution to the CRM module development."
-    }
+        title: "Best Performer Award",
+        kind: "Elroi Software Solutions",
+        description: "Recognised for outstanding contribution to the CRM module.",
+    },
 ];
 
 const Achievements = () => {
     return (
-        <div className="flex flex-col gap-10">
-            <motion.div variants={textVariant(0)}>
-                <p className={`${styles.sectionSubText}`}>My Accomplishments</p>
-                <h2 className={`${styles.sectionHeadText}`}>Achievements.</h2>
-            </motion.div>
+        <>
+            <SectionHeading
+                index="07"
+                eyebrow="Certifications & awards"
+                title={<>Paper <em>trail</em></>}
+            />
 
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-7">
+            <ul className="grid gap-x-16 md:grid-cols-2">
                 {achievements.map((item, index) => (
-                    <motion.div
-                        key={index}
-                        variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-                        className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full border border-white/5"
+                    <motion.li
+                        key={item.title}
+                        variants={fadeIn("up", index * 0.06, 0.8)}
+                        className="group grid grid-cols-[3rem_1fr] gap-x-4 border-t border-line py-7 md:py-8"
                     >
-                        <div className="mt-1">
-                            <h4 className="text-white font-bold text-[20px]">{item.title}</h4>
-                            <p className="mt-3 text-secondary text-[14px] leading-[24px]">
-                                {item.description}
-                            </p>
+                        <span className="font-mono text-xs tabular-nums text-accent pt-1">
+                            {(index + 1).toString().padStart(2, "0")}
+                        </span>
+                        <div>
+                            <p className="eyebrow mb-2">{item.kind}</p>
+                            <h3 className="text-lg font-semibold tracking-[-0.01em] text-txt-main md:text-xl">{item.title}</h3>
+                            <p className="mt-2 max-w-[44ch] text-[15px] leading-relaxed text-txt-sub">{item.description}</p>
                         </div>
-                    </motion.div>
+                    </motion.li>
                 ))}
-            </div>
-        </div>
+            </ul>
+        </>
     );
-}
+};
 
 export default SectionWrapper(Achievements, "achievements");

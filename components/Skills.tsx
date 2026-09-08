@@ -2,12 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-    FaReact,
-    FaNodeJs,
-    FaGitAlt,
-    FaDocker
-} from "react-icons/fa";
+import { FaReact, FaNodeJs, FaGitAlt, FaDocker } from "react-icons/fa";
 import {
     SiNextdotjs,
     SiTypescript,
@@ -17,87 +12,72 @@ import {
     SiMongodb,
     SiFigma,
     SiAngular,
-    SiThreedotjs
+    SiThreedotjs,
 } from "react-icons/si";
+import { PiArrowDownRight } from "react-icons/pi";
 
-import { styles } from "@/lib/styles";
 import SectionWrapper from "./SectionWrapper";
-import { textVariant, fadeIn } from "@/lib/motion";
+import SectionHeading from "./SectionHeading";
+import { fadeIn } from "@/lib/motion";
 
 const skills = [
-    { name: "React.js", icon: FaReact, color: "text-[#61DAFB]" },
-    { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
-    { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
-    { name: "JavaScript", icon: SiJavascript, color: "text-[#F7DF1E]" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-[#06B6D4]" },
-    { name: "Redux", icon: SiRedux, color: "text-[#764ABC]" },
-    { name: "Node.js", icon: FaNodeJs, color: "text-[#339933]" },
-    { name: "MongoDB", icon: SiMongodb, color: "text-[#47A248]" },
-    { name: "Figma", icon: SiFigma, color: "text-[#F24E1E]" },
-    { name: "Git", icon: FaGitAlt, color: "text-[#F05032]" },
-    { name: "React Native", icon: FaReact, color: "text-[#61DAFB]" },
-    { name: "Angular", icon: SiAngular, color: "text-[#DD0031]" },
-    { name: "Three.js", icon: SiThreedotjs, color: "text-white" },
-    { name: "Docker", icon: FaDocker, color: "text-[#2496ED]" },
+    { name: "React", icon: FaReact, brand: "#61DAFB" },
+    { name: "Next.js", icon: SiNextdotjs, brand: "#ffffff" },
+    { name: "TypeScript", icon: SiTypescript, brand: "#3178C6" },
+    { name: "JavaScript", icon: SiJavascript, brand: "#F7DF1E" },
+    { name: "Tailwind", icon: SiTailwindcss, brand: "#06B6D4" },
+    { name: "Redux", icon: SiRedux, brand: "#764ABC" },
+    { name: "Node.js", icon: FaNodeJs, brand: "#339933" },
+    { name: "MongoDB", icon: SiMongodb, brand: "#47A248" },
+    { name: "Figma", icon: SiFigma, brand: "#F24E1E" },
+    { name: "Git", icon: FaGitAlt, brand: "#F05032" },
+    { name: "React Native", icon: FaReact, brand: "#61DAFB" },
+    { name: "Angular", icon: SiAngular, brand: "#DD0031" },
+    { name: "Three.js", icon: SiThreedotjs, brand: "#ffffff" },
+    { name: "Docker", icon: FaDocker, brand: "#2496ED" },
 ];
 
 const Skills = () => {
     return (
-        <section className="relative w-full">
-            <motion.div
-                variants={textVariant(0)}
-                className="w-full bg-[#100d25] rounded-[48px] p-10 md:p-20 border border-white/5 flex flex-col xl:flex-row gap-16 items-center overflow-hidden"
-            >
-                {/* Left Side: Text Content */}
-                <div className="flex-1 flex flex-col items-start z-10 w-full">
-                    <p className="text-[#aaa6c3] text-sm font-bold uppercase tracking-widest mb-4">
-                        My Tech Stack
-                    </p>
-                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1]">
-                        Modern Expertise<br />
-                        Powerful Results
-                    </h2>
-                    <p className="text-[#aaa6c3] text-lg leading-relaxed max-w-lg mb-12">
-                        I specialize in building high-performance web and mobile applications using a carefully selected stack of modern technologies.
-                    </p>
+        <>
+            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+                <SectionHeading
+                    index="02"
+                    eyebrow="Tech stack"
+                    title={<>Tools I <em>build</em> with</>}
+                    lede="Four years of React, Next.js and TypeScript in production — plus the mobile, backend and design tools that keep a product moving."
+                    className="mb-0"
+                />
+                <motion.a
+                    variants={fadeIn("up", 0.1, 0.8)}
+                    href="#projects"
+                    className="group inline-flex items-center gap-3 self-start text-sm font-medium text-txt-main lg:mb-2"
+                >
+                    <span className="border-b border-line-strong pb-0.5 transition-colors group-hover:border-accent">
+                        See the work
+                    </span>
+                    <PiArrowDownRight className="h-4 w-4 text-accent transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                </motion.a>
+            </div>
 
-                    <div className="flex flex-wrap gap-4">
-                        <button
-                            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-white text-[#050816] px-10 py-4 rounded-full font-bold text-lg hover:bg-[#aaa6c3] transition-all transform active:scale-95 shadow-xl"
-                        >
-                            Browse Projects
-                        </button>
-                    </div>
-                </div>
-
-                {/* Right Side: Grid of Icons */}
-                <div className="flex-1 w-full max-w-xl">
-                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:gap-6">
-                        {skills.map((skill, index) => (
-                            <motion.div
-                                key={skill.name}
-                                variants={fadeIn("up", "spring", index * 0.05, 0.5)}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={{ once: true }}
-                                className="aspect-square bg-[#1d1836] rounded-[24px] flex flex-col items-center justify-center p-6 hover:bg-[#232631] transition-all border border-white/5 group shadow-2xl relative overflow-hidden"
-                            >
-                                {/* Decorative gradient on hover */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                                <skill.icon className={`w-12 h-12 text-white/50 group-hover:${skill.color} transition-all duration-300 filter group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] z-10`} />
-
-                                <span className="absolute bottom-2 text-[10px] font-medium text-[#aaa6c3] opacity-0 group-hover:opacity-100 transition-all transform translate-y-1 group-hover:translate-y-0 z-10">
-                                    {skill.name}
-                                </span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-            </motion.div>
-        </section>
+            {/* Gapless hairline grid — 7×2 on desktop, so nothing orphans */}
+            <ul className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4 lg:grid-cols-7 md:mt-20">
+                {skills.map((skill, index) => (
+                    <motion.li
+                        key={skill.name}
+                        variants={fadeIn("up", index * 0.03, 0.7)}
+                        style={{ "--brand": skill.brand } as React.CSSProperties}
+                        className="skill-tile spotlight group flex aspect-square flex-col items-center justify-center gap-4 bg-background transition-colors duration-500 hover:bg-surface"
+                        tabIndex={0}
+                    >
+                        <skill.icon className="skill-icon h-9 w-9 text-txt-muted transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5" />
+                        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-txt-muted transition-colors duration-500 group-hover:text-txt-sub">
+                            {skill.name}
+                        </span>
+                    </motion.li>
+                ))}
+            </ul>
+        </>
     );
 };
 

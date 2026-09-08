@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Poppins, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const SITE_URL = "https://portfoliokar-psi.vercel.app";
@@ -159,7 +165,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -171,7 +177,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${poppins.variable} ${geistMono.variable} antialiased`}
+        className="antialiased"
       >
         {children}
       </body>
