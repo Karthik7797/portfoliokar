@@ -123,12 +123,11 @@ export default function RootLayout({
             var swarmOnce = !swarmForced && swarmMode !== 'replay';
             var swarmSeen = swarmOnce && sessionStorage.getItem('swarm:done') === '1';
             var swarmReduced = !swarmForced && matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (!swarmOff && !swarmSeen && !swarmReduced) {
-              document.documentElement.classList.add('swarm-preloading');
-              setTimeout(function () { document.documentElement.classList.remove('swarm-preloading'); }, 10000);
-            }
-          } catch (_) {}
+            if (location.pathname !== '/' || swarmOff || swarmSeen || swarmReduced) document.documentElement.classList.add('swarm-no-preload');
+          } catch (_) { document.documentElement.classList.add('swarm-no-preload'); }
+          setTimeout(function () { document.documentElement.classList.add('swarm-no-preload'); }, 10000);
         ` }} />
+        <noscript><style>{`#swarm-preloader { display: none !important; }`}</style></noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

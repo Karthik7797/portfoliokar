@@ -2147,6 +2147,7 @@
       this.nextId = 0;
       this.spawnCooldown = 0;
       this.flocking = false;
+      this.awaitingExit = false;
       this.lastT = null;
       this.tv = { x: 0, y: 0 };
       this.mouse = null;
@@ -2353,7 +2354,7 @@
         }
       }
 
-      if (!this.flocking && this.started && this.waitCount === 0) {
+      if (!this.flocking && !this.awaitingExit && this.started && this.waitCount === 0) {
         for (const c of this.cursors)
           if (!c.task && !c.follow) {
             c.follow = true;
@@ -2363,11 +2364,12 @@
             c.shape = "arrow";
           }
         if (this.cursors.every((c) => c.follow)) {
-          this.flocking = true;
+          this.awaitingExit = true;
           this.endTime = this.time;
           if (this.onComplete) this.onComplete();
         }
       }
+      if (this.awaitingExit) return;
       if (this.flocking) {
         this.flock(dt);
         return;
@@ -2658,7 +2660,7 @@
     }
 
     *leave(c) {
-      const right = c.x > this.vp.sx + this.vp.vw / 2;
+      const right = this.releasing || c.x > this.vp.sx + this.vp.vw / 2;
       yield* this.moveTo(
         c,
         () => {
@@ -3773,6 +3775,7 @@
       };
       if (reveal) {
         this.engine.releasing = true;
+        this.engine.awaitingExit = false;
         this.engine.flocking = true;
         for (const c of this.engine.cursors) {
           c.gen = null;

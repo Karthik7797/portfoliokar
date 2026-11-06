@@ -98,16 +98,20 @@
   }
 
   function releasePreloader() {
-    document.documentElement.classList.remove("swarm-preloading");
+    document.documentElement.classList.add("swarm-no-preload");
   }
 
   function releaseWhenSwarmIsVisible() {
     var host = document.querySelector("swarm-rebuild");
     var bg = host && host.shadowRoot && host.shadowRoot.querySelector(".bg");
     if (!bg) return releasePreloader();
+    // The engine fades this background in over 500ms. Keep it opaque from its
+    // first frame so the real page can never show between loader and rebuild.
+    bg.style.transition = "none";
+    bg.style.opacity = "1";
     var started = performance.now();
     function check() {
-      if (bg.classList.contains("on") || performance.now() - started > 1500) {
+      if ((bg.classList.contains("on") && Number(getComputedStyle(bg).opacity) >= 0.99) || performance.now() - started > 1500) {
         releasePreloader();
       } else {
         requestAnimationFrame(check);
@@ -205,11 +209,19 @@
         var showCompletion = swarmApp.onComplete.bind(swarmApp);
         swarmApp.onComplete = function () {
           showCompletion();
-          setTimeout(function () {
-            if (window[KEY] && window[KEY].app === swarmApp) {
-              window[KEY].stop(true);
-            }
-          }, 700);
+          var root = host && host.shadowRoot;
+          if (!root) return;
+          var cue = document.createElement("button");
+          cue.type = "button";
+          cue.textContent = "Click anywhere to enter ↗";
+          cue.setAttribute("aria-label", "Enter portfolio");
+          cue.style.cssText = "position:absolute;left:50%;bottom:clamp(20px,4vw,48px);transform:translateX(-50%);z-index:10;border:0;background:#efe2c8;color:#151410;padding:13px 20px;font:700 12px Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;box-shadow:0 8px 24px #0003;white-space:nowrap;";
+          root.appendChild(cue);
+          var enter = function () {
+            if (window[KEY] && window[KEY].app === swarmApp) window[KEY].stop(true);
+          };
+          root.addEventListener("click", enter, { once: true });
+          (swarmApp.unbinds || (swarmApp.unbinds = [])).push(function () { root.removeEventListener("click", enter); });
         };
       }
       markDone();
