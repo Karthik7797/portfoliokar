@@ -176,6 +176,23 @@
       document.documentElement.classList.add("swarm-capture-ready");
       await new Promise(function (r) { setTimeout(r, 100); });
       await loadEngine();
+      // Keep the rebuild animation, but present it as an intro rather than a player.
+      var swarmApp = window[KEY] && window[KEY].app;
+      if (swarmApp) {
+        var host = document.querySelector("swarm-rebuild");
+        var hud = host && host.shadowRoot && host.shadowRoot.querySelector(".hud");
+        if (hud) hud.style.display = "none";
+
+        var showCompletion = swarmApp.onComplete.bind(swarmApp);
+        swarmApp.onComplete = function () {
+          showCompletion();
+          setTimeout(function () {
+            if (window[KEY] && window[KEY].app === swarmApp) {
+              window[KEY].stop(true);
+            }
+          }, 700);
+        };
+      }
       markDone();
       // Auto-start Tour: visitors get the smooth scroll-driven build
       // from the first paint instead of a static half-built page.
