@@ -97,6 +97,25 @@
     } catch (_) {}
   }
 
+  function releasePreloader() {
+    document.documentElement.classList.remove("swarm-preloading");
+  }
+
+  function releaseWhenSwarmIsVisible() {
+    var host = document.querySelector("swarm-rebuild");
+    var bg = host && host.shadowRoot && host.shadowRoot.querySelector(".bg");
+    if (!bg) return releasePreloader();
+    var started = performance.now();
+    function check() {
+      if (bg.classList.contains("on") || performance.now() - started > 1500) {
+        releasePreloader();
+      } else {
+        requestAnimationFrame(check);
+      }
+    }
+    check();
+  }
+
   function waitVisible(timeoutMs) {
     if (document.visibilityState === "visible") return Promise.resolve(true);
     return new Promise(function (resolve) {
@@ -139,11 +158,10 @@
   }
 
   async function boot() {
-    if (!opts.auto) return;
-    if (disabled()) return;
-    if (prefersReducedMotion()) return;
-    if (alreadyDone()) return;
-    if (window[KEY]) return; // already running
+    if (!opts.auto || disabled() || prefersReducedMotion() || alreadyDone() || window[KEY]) {
+      releasePreloader();
+      return;
+    }
 
     // Let the real page paint before we snapshot it.
     await new Promise(function (r) {
@@ -155,7 +173,7 @@
     // leave the visitor staring at a frozen overlay. Wait for visibility, but
     // bail out rather than block forever.
     var visible = await waitVisible(opts.visibilityTimeoutMs);
-    if (!visible) return;
+    if (!visible) return releasePreloader();
 
     if (opts.waitFonts) {
       try {
@@ -169,13 +187,14 @@
     await new Promise(function (r) { setTimeout(r, opts.delayMs); });
 
     // Re-check: the visitor may have backgrounded the tab while we waited.
-    if (disabled() || alreadyDone()) return;
-    if (document.visibilityState !== "visible") return;
+    if (disabled() || alreadyDone()) return releasePreloader();
+    if (document.visibilityState !== "visible") return releasePreloader();
 
     try {
       document.documentElement.classList.add("swarm-capture-ready");
       await new Promise(function (r) { setTimeout(r, 100); });
       await loadEngine();
+      releaseWhenSwarmIsVisible();
       // Keep the rebuild animation, but present it as an intro rather than a player.
       var swarmApp = window[KEY] && window[KEY].app;
       if (swarmApp) {
@@ -225,6 +244,7 @@
         });
       }
     } catch (err) {
+      releasePreloader();
       console.error("[swarm] boot failed", err);
     }
   }

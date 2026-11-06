@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { experience, headline, linkedIn, profileSummary, skillGroups } from "@/lib/portfolio-profile";
 import "./globals.css";
 
@@ -112,8 +113,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            var swarmMode = new URLSearchParams(location.search).get('swarm');
+            var swarmOff = swarmMode === 'off' || swarmMode === '0';
+            var swarmForced = swarmMode === '1' || swarmMode === 'on';
+            var swarmOnce = !swarmForced && swarmMode !== 'replay';
+            var swarmSeen = swarmOnce && sessionStorage.getItem('swarm:done') === '1';
+            var swarmReduced = !swarmForced && matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!swarmOff && !swarmSeen && !swarmReduced) {
+              document.documentElement.classList.add('swarm-preloading');
+              setTimeout(function () { document.documentElement.classList.remove('swarm-preloading'); }, 10000);
+            }
+          } catch (_) {}
+        ` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -126,6 +141,12 @@ export default function RootLayout({
       <body
         className="antialiased"
       >
+        <div id="swarm-preloader" role="status" aria-label="Preparing portfolio animation">
+          <div className="swarm-preloader__mark"><Image src="/icon.png" alt="" width={88} height={88} unoptimized /></div>
+          <div className="swarm-preloader__copy"><span>Karthikeyan Prabhu</span><strong>Crafting the experience</strong></div>
+          <div className="swarm-preloader__track"><span /></div>
+          <span className="swarm-preloader__index">001 — Portfolio / 2026</span>
+        </div>
         {children}
       </body>
     </html>
