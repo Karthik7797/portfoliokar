@@ -36,7 +36,7 @@ export default function Home() {
     <div className={styles.site} id="top">
       <a className={styles.skip} href="#main">Skip to content</a>
       <header className={styles.header}>
-        <a className={styles.wordmark} href="#top">Karthikeyan Prabhu</a>
+        <a className={styles.wordmark} href="#top"><Image src="/icon.png" alt="" width={36} height={36} />Karthikeyan Prabhu</a>
         <nav aria-label="Primary">
           <a href="#projects">Work</a><a href="#about">About</a><a href="#services">Expertise</a>
           <a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
@@ -120,7 +120,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <a className={styles.wordmark} href="#top">Karthikeyan Prabhu</a><small>© {new Date().getFullYear()} Karthikeyan Prabhu</small>
+        <a className={styles.wordmark} href="#top"><Image src="/icon.png" alt="" width={36} height={36} />Karthikeyan Prabhu</a><small>© {new Date().getFullYear()} Karthikeyan Prabhu</small>
         <div><a href={linkedIn}>LinkedIn</a><a href="/about">Full profile</a><a className={styles.top} href="#top" aria-label="Back to top">↑</a></div>
       </footer>
       <Script src="/assets/swarm/init.js" strategy="afterInteractive" />

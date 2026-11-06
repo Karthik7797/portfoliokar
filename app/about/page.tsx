@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { headline, profileSummary, experience, skillGroups, linkedIn, resume } from "@/lib/portfolio-profile";
 import { projects, ownProjects } from "@/lib/portfolio-projects";
@@ -41,7 +42,7 @@ export default function AboutPage() {
       <div className={styles.profile}>
       <article>
         <Link href="/" className={styles.textLink}>← Back to portfolio</Link>
-        <h1 className="text-4xl font-bold mb-2">Karthikeyan Prabhu</h1>
+        <h1 className={styles.profileTitle}><Image src="/icon.png" alt="" width={48} height={48} />Karthikeyan Prabhu</h1>
         <p className="text-lg text-txt-sub mb-8">
           {headline}
         </p>
