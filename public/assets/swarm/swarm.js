@@ -2369,7 +2369,10 @@
           if (this.onComplete) this.onComplete();
         }
       }
-      if (this.awaitingExit) return;
+      if (this.awaitingExit) {
+        this.follow(dt, this.cursors);
+        return;
+      }
       if (this.flocking) {
         this.flock(dt);
         return;
