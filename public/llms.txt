@@ -1,26 +1,23 @@
 # Karthikeyan Prabhu
 
-> Karthikeyan Prabhu is a Senior Front-end Developer at BrainCert with 4+ years of
-> experience in UI engineering and design-driven development, building scalable,
-> high-performance web and mobile applications.
+> Karthikeyan Prabhu is a frontend and SharePoint developer with 5+ years of experience building web and mobile products and Microsoft Power Platform solutions.
 
 ## Profile
 
 - Name: Karthikeyan Prabhu
-- Title: Senior Front-end Developer / Front-end Engineer
-- Current employer: BrainCert (since November 2024)
+- Title: Frontend and Power Platform Developer
+- Current employer: JJSoft Techno Private Limited (since June 2026)
 - Location: India
 - Email: karthikeyanprabhu8@gmail.com
 - Phone: +91 63802 17451
-- LinkedIn: https://linkedin.com/in/karthikeyan-prabhu
+- LinkedIn: https://linkedin.com/in/karthikeyan-prabhu-314974170
 - Portfolio: https://portfoliokar-psi.vercel.app
 - Resume: https://portfoliokar-psi.vercel.app/Resume_Karthikeyan-prabhu.pdf
 - Availability: open to freelance projects and full-time opportunities
 
 ## Skills
 
-React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, Redux, Zustand, Node.js,
-MongoDB, Figma, Git, React Native, Angular, Three.js, Docker.
+React, Next.js, TypeScript, Angular, Ionic, React Native, Tailwind CSS, Fluent UI, Redux, Zustand, REST APIs, SPFx, SharePoint Online, Microsoft Graph, Power Apps, Power Automate, Copilot Studio, Power Fx, Dataverse, Node.js, MongoDB, Git and Figma.
 
 Other areas of expertise: UI engineering, design systems, component library
 architecture, responsive design, cross-browser compatibility, rendering performance
@@ -28,7 +25,10 @@ optimisation, state management, RESTful API integration, frontend-to-backend dat
 
 ## Work Experience
 
-### Senior Front-end Developer — BrainCert (Nov 2024 – Present)
+### SharePoint & Power Platform Developer — JJSoft Techno Private Limited (Jun 2026 – Present)
+- Builds SPFx web parts, role-based Power Apps, Power Automate workflows and Copilot Studio agents using SharePoint and Dataverse.
+
+### Senior Front-end Developer — BrainCert (Nov 2024 – May 2026)
 - Architected and developed high-performance web and mobile interfaces using the React stack.
 - Engineered scalable component libraries and integrated complex RESTful architectures.
 - Optimized rendering pipelines and state management strategies for enterprise-grade applications.
@@ -42,7 +42,13 @@ optimisation, state management, RESTful API integration, frontend-to-backend dat
 - Transformed high-fidelity Figma prototypes into pixel-perfect technical implementations.
 - Ensured cross-browser performance and localized UI consistency for global web applications.
 
+### Graphic Design Intern — Woua Software Labs (Jan 2021 – Jul 2021)
+- Produced web assets and supported frontend fixes.
+
 ## Professional Projects
+
+- ALKHEMY (https://alkhemy.vercel.app/) — product site for ionised water.
+- Student ID CRM (https://studentidcrm.vercel.app/) — demo workspace for student leads, follow-ups, mentoring and applications.
 
 - Dhaksha Travels (https://maduraidhakshatoursandtravels.com/) — car rental search and
   booking platform. React, MongoDB, Tailwind CSS.

@@ -1,42 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { experience, headline, linkedIn, profileSummary, skillGroups } from "@/lib/portfolio-profile";
 import "./globals.css";
-
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
 
 const SITE_URL = "https://portfoliokar-psi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Karthikeyan Prabhu — Senior Front-end Engineer",
+    default: `Karthikeyan Prabhu — ${headline}`,
     template: "%s | Karthikeyan Prabhu",
   },
-  description:
-    "Karthikeyan Prabhu is a Senior Front-end Developer at BrainCert with 4+ years of experience building scalable, high-performance web and mobile applications. Skilled in React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, Redux, Node.js, MongoDB, React Native, Angular, Three.js, Figma, Git and Docker.",
+  description: profileSummary,
   keywords: [
     "Karthikeyan Prabhu",
-    "Senior Front-end Developer",
+    "SharePoint & Power Platform Developer",
     "Front-end Engineer",
     "React Developer",
     "Next.js Developer",
     "UI Developer",
-    "BrainCert",
+    "SPFx",
+    "Power Apps",
+    "Power Automate",
     "React Native",
     "TypeScript",
     "Portfolio",
@@ -48,17 +32,15 @@ export const metadata: Metadata = {
     type: "profile",
     url: SITE_URL,
     siteName: "Karthikeyan Prabhu — Portfolio",
-    title: "Karthikeyan Prabhu — Senior Front-end Engineer",
-    description:
-      "Senior Front-end Developer at BrainCert. React.js, Next.js, TypeScript, React Native. 4+ years building scalable, high-performance web and mobile applications.",
+    title: `Karthikeyan Prabhu — ${headline}`,
+    description: profileSummary,
     firstName: "Karthikeyan",
     lastName: "Prabhu",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karthikeyan Prabhu — Senior Front-end Engineer",
-    description:
-      "Senior Front-end Developer at BrainCert. React.js, Next.js, TypeScript, React Native.",
+    title: `Karthikeyan Prabhu — ${headline}`,
+    description: profileSummary,
   },
   robots: {
     index: true,
@@ -73,37 +55,17 @@ const personJsonLd = {
   name: "Karthikeyan Prabhu",
   givenName: "Karthikeyan",
   familyName: "Prabhu",
-  jobTitle: "Senior Front-end Developer",
-  description:
-    "Senior Front-end Developer specialising in UI engineering and design-driven development, building scalable, high-performance web and mobile applications.",
+  jobTitle: experience[0].title,
+  description: profileSummary,
   url: SITE_URL,
   email: "mailto:karthikeyanprabhu8@gmail.com",
   telephone: "+91-63802-17451",
   worksFor: {
     "@type": "Organization",
-    name: "BrainCert",
+    name: experience[0].company,
   },
-  sameAs: ["https://linkedin.com/in/karthikeyan-prabhu"],
-  knowsAbout: [
-    "React.js",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Tailwind CSS",
-    "Redux",
-    "Zustand",
-    "Node.js",
-    "MongoDB",
-    "Figma",
-    "Git",
-    "React Native",
-    "Angular",
-    "Three.js",
-    "Docker",
-    "UI Engineering",
-    "Design Systems",
-    "RESTful APIs",
-  ],
+  sameAs: [linkedIn],
+  knowsAbout: skillGroups.flatMap(({ skills }) => skills),
   alumniOf: [
     {
       "@type": "CollegeOrUniversity",
@@ -127,28 +89,13 @@ const personJsonLd = {
     "HackerRank JavaScript Certification",
     "Best Performer Award (Elroi Software Solutions)",
   ],
-  hasOccupation: [
-    {
-      "@type": "Occupation",
-      name: "Senior Front-end Developer",
-      occupationLocation: { "@type": "Organization", name: "BrainCert" },
-      startDate: "2024-11",
-    },
-    {
-      "@type": "Occupation",
-      name: "UI Developer",
-      occupationLocation: { "@type": "Organization", name: "Elroi Software Solutions" },
-      startDate: "2022-11",
-      endDate: "2024-10",
-    },
-    {
-      "@type": "Occupation",
-      name: "UI Developer",
-      occupationLocation: { "@type": "Organization", name: "KitKat Software Solutions" },
-      startDate: "2021-08",
-      endDate: "2022-09",
-    },
-  ],
+  hasOccupation: experience.map(({ title, company, startDate, endDate }) => ({
+    "@type": "Occupation",
+    name: title,
+    occupationLocation: { "@type": "Organization", name: company },
+    startDate,
+    endDate,
+  })),
 };
 
 const websiteJsonLd = {
@@ -165,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
