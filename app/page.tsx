@@ -90,7 +90,7 @@ export default function Home() {
 
         <section className={styles.projects} id="projects">
           <div className={styles.sectionHead}><h2>Selected projects</h2><a className={styles.textLink} href="#all-projects">View all projects ↗</a></div>
-          <div className={styles.projectGrid}>{[...featuredProjects, ...projects.filter((project) => project.name === "AI Acme")].map((project, index) =>
+          <div className={styles.projectGrid}>{featuredProjects.map((project, index) =>
             <ProjectCard key={project.name} project={project} index={index} />
           )}</div>
           <details className={styles.archive}>

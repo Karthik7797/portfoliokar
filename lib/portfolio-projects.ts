@@ -21,6 +21,13 @@ export const featuredProjects: Project[] = [
         image: "/assets/student-id-crm.jpg",
         link: "https://studentidcrm.vercel.app/",
     },
+    {
+        name: "MELD",
+        description: "A design studio website with bold typography, featured work and a focused contact experience.",
+        tags: ["Studio website", "Brand identity", "Web experience"],
+        image: "/assets/meld.png",
+        link: "https://itsmeld.com/",
+    },
 ];
 
 export const projects: Project[] = [
